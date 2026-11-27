@@ -1,0 +1,10 @@
+{
+  "name": "zucker-welt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interaktive Medienstation rund um Kohlenhydrate, Stereoisomerie, Enzyme und Polysaccharide (inspiriert von Alles Zucker!)",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "python3 -m http.server 8765"
+  }
+}

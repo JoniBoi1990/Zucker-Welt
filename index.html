@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Interaktive Entdeckungsstation zur Chemie und Vielfalt der Zucker: Wortwolke, Strukturformeln, Aldosen & Ketosen C-Dreher, Enzym-Labor und Polysaccharid-Baukasten."
+    />
+    <title>Zucker – Es gibt viel mehr, als nur den Einen | Alles Zucker!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <a href="#stage-heading" class="skip-link visually-hidden">Zum Hauptinhalt springen</a>
+
+    <!-- Global SVG Pattern Definitions (for diagonal striped hex monomer matching Image 4) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <pattern id="museum-stripes" width="8" height="8" patternTransform="rotate(35)" patternUnits="userSpaceOnUse">
+          <rect width="8" height="8" fill="rgba(255,255,255,0.08)" />
+          <line x1="0" y1="0" x2="0" y2="8" stroke="#ffffff" stroke-width="4.2" />
+        </pattern>
+      </defs>
+    </svg>
+
+    <!-- Centralized Polite Screen-Reader Live Region -->
+    <div id="sr-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Main Interactive Museum Stage -->
+    <main id="museum-stage" class="museum-stage"></main>
+
+    <!-- Museum Bottom Navigation Dock (EN/DE + Quiz | 5 Stations | Back/Forward) -->
+    <footer class="museum-dock">
+      <div class="dock-left-controls">
+        <div class="dock-lang-group" role="group" aria-label="Sprache / Language">
+          <button type="button" id="btn-lang-en" class="lang-circle-btn" aria-pressed="false" aria-label="English (EN)">
+            EN
+          </button>
+          <button type="button" id="btn-lang-de" class="lang-circle-btn" aria-pressed="true" aria-label="Deutsch (DE)">
+            DE
+          </button>
+        </div>
+        <button type="button" id="btn-open-quiz" class="dock-quiz-btn" aria-label="Wissens-Quiz starten">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3L2 8l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M6 10.5v5.2c0 1.8 2.7 3.3 6 3.3s6-1.5 6-3.3v-5.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span id="dock-quiz-label">Quiz</span>
+        </button>
+      </div>
+
+      <nav class="dock-stations" aria-label="Stationen">
+        <!-- 1. [Z] Book: Zucker-Lexikon & Wortwolke -->
+        <button type="button" class="dock-station-btn" data-station="cloud" aria-current="page" aria-label="Zucker-Wolke & Lexikon">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M8 5.5h15.5a1.5 1.5 0 0 1 1.5 1.5v17H9.5A2.5 2.5 0 0 0 7 26.5V7a1.5 1.5 0 0 1 1-1.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M7 24.5A2.5 2.5 0 0 1 9.5 22H25v4.5H9.5A2.5 2.5 0 0 1 7 24.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M13.5 11.5h5l-5 6h5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- 2. [i] Info: Steckbriefe & Ketten-/Ringform -->
+        <button type="button" class="dock-station-btn" data-station="profile" aria-label="Zucker-Steckbrief & Ringform">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="8.5" r="2.3" stroke="currentColor" stroke-width="2"/>
+            <path d="M13 14h4.5v10.5M12.5 24.5h7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- 3. [C↻] C-Dreher: Stereoisomerie Aldosen & Ketosen -->
+        <button type="button" class="dock-station-btn" data-station="stereo" aria-label="C-Dreher: Aldosen und Ketosen">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M9.5 10.5c3.2-3.5 9.2-3.5 12.5 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M19.2 11h3.3V7.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.8 15.8a4.8 4.8 0 1 0 0 6.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- 4. [ᗧ] Pac-Man: Enzym-Labor -->
+        <button type="button" class="dock-station-btn" data-station="enzyme" aria-label="Enzym-Labor & Verdauung">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M23.8 10.6A9.5 9.5 0 1 0 23.8 21.4L16.5 16l7.3-5.4Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle cx="15.5" cy="11.2" r="1.4" fill="currentColor"/>
+          </svg>
+        </button>
+
+        <!-- 5. [🧩] Puzzle: Unendliche Möglichkeiten (Polysaccharid-Baukasten) -->
+        <button type="button" class="dock-station-btn" data-station="puzzle" aria-label="Polysaccharid-Puzzle: Unendliche Möglichkeiten">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M9 11.5h4.2a2.5 2.5 0 1 1 3.6 0H22v5a2.3 2.3 0 1 0 0 3.8v4.7H9V11.5Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </nav>
+
+      <div class="dock-history-group" role="group" aria-label="Verlauf / History">
+        <button type="button" id="btn-nav-back" class="history-circle-btn" aria-disabled="true" aria-label="Zurück">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14.5 6.5L9 12l5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" id="btn-nav-fwd" class="history-circle-btn" aria-disabled="true" aria-label="Vorwärts">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9.5 6.5L15 12l-5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </footer>
+
+    <!-- Native Modal Dialog for Glossary Explanations -->
+    <dialog id="glossary-dialog" class="glossary-dialog" closedby="any" aria-labelledby="glossary-dialog-title">
+      <h1 id="glossary-dialog-title">Begriff</h1>
+      <p id="glossary-dialog-body"></p>
+      <form method="dialog">
+        <button type="submit" id="glossary-dialog-close" class="action-pill" autofocus>Schließen</button>
+      </form>
+    </dialog>
+
+    <!-- Native Modal Dialog for the 10-Question Interactive Museum Quiz -->
+    <dialog id="quiz-dialog" class="glossary-dialog quiz-dialog" closedby="any" aria-labelledby="quiz-dialog-title">
+      <div id="quiz-dialog-content">
+        <h1 id="quiz-dialog-title">Alles Zucker! – Museums-Quiz</h1>
+      </div>
+    </dialog>
+
+    <script defer src="js/stereochemistry.js"></script>
+    <script defer src="js/data-sugars.js"></script>
+    <script defer src="js/structures-svg.js"></script>
+    <script defer src="js/enzyme-lab.js"></script>
+    <script defer src="js/polysaccharide-puzzle.js"></script>
+    <script defer src="js/app.js"></script>
+  </body>
+</html>
